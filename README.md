@@ -1,2 +1,2 @@
-# knowledgegraph
-Solution to PhD course on KG
+# Solution to Graph Matching Exercise
+

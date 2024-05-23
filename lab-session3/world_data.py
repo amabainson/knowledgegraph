@@ -55,7 +55,7 @@ def create_dataframe(countries):
     new_df = pd.concat(list_dataframes)
     result = new_df.sort_values(['place','source','similarity'], ascending=False).groupby(['place', 'source']).first().reset_index()
     result['newtypes'] = result['types'].str.rsplit('/').str[-1].str.strip("'")
-    final_df = result[result.source=='DBpedia>'][['similarity', 'place', '<id','newtypes']]
+    final_df = result[['similarity', 'place', '<id','newtypes']]
     return final_df
 
 #format the final dataframe

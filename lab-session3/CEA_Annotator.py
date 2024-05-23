@@ -50,6 +50,7 @@ def create_dataframe(countries):
     new_df = pd.concat(list_dataframes)
     result = new_df.sort_values(['place','source','similarity'], ascending=False).groupby(['place', 'source']).first().reset_index()
     final_df = result[['similarity', 'place', '<id', 'label']]
+    return final_df
 
 def script(file_path):
     #function to read source files and annotate entities
@@ -63,23 +64,23 @@ def script(file_path):
     
 
     list_df = []
-    for ind, column in enumerate(data_copy.columns):
-        print(ind, column)   
-        values = list(source_data[column])
+    for ind, col in enumerate(data_copy.columns):
+        print(ind, col)   
+        values = list(source_data[col])
         #print(values)
         try:
             if [s for s in values if contains_number(s)]:#eliminate columns that contain numbers#
                 similarities = create_dataframe(values)
-                similarities['column_number'] = column[-1]
-                similarities = pd.merge(source_data, similarities, left_on= [column], right_on="place", how="left")
-                
+                similarities['column_number'] = col[-1]
+                similarities = pd.merge(source_data, similarities, left_on= [col], right_on="place", how="left")
                 list_df.append(similarities)
 
         #except Exception:
-            #traceback.print_exc()
+        #    traceback.print_exc()
+        #    continue
         except:
-            print(f"Error processing column: {column}")
-
+            print(f"Error processing column: {col}")
+    
     final_frame = pd.concat(list_df, ignore_index=True)  
     final_frame['file_name'] = file_title
     final_frame = final_frame[['file_name','row_number', 'column_number', '<id']].dropna()

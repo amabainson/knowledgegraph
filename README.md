@@ -61,8 +61,7 @@ lab-session3/
   ├── CEA_Annotator.py
   ├── CTA_Annotator.py
   └── sem-tab-evaluator/
-        ├── system_example/
-        └── CEA_Evaluator.py
+        ├── CEA_Evaluator.py
         └── CTA_Evaluator.py
 ```
 

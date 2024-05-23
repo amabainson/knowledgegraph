@@ -9,11 +9,9 @@ from isub import isub
 
 world_data = pd.read_csv("data/worldcities-free-100.csv")
 
-# Copy the data and add row and column numbers
+# Copy the data, add row numbers, dataset name
 world_data['row_number'] = world_data.reset_index().index + 1
-#world_data['city_number'] = 1
-#world_data['country_number'] = 5
-world_data['dataset'] = 'WORLDDATA'
+world_data['dataset'] = 'WORLDCITIES'
 result_df = world_data.copy()
 
 #find distinct values for cities and countries
@@ -23,6 +21,8 @@ countries = list(result_df.country.drop_duplicates())
 
 
 def create_dataframe(countries):
+#function to extract ontologies and convert to dataframe
+
     list_dataframes= []
     for country in countries:
         print("Entities matching the keyword: " + country)
@@ -58,6 +58,7 @@ def create_dataframe(countries):
     final_df = result[result.source=='DBpedia>'][['similarity', 'place', '<id','newtypes']]
     return final_df
 
+#format the final dataframe
 source_df = result_df[['dataset', 'city', 'country']]
 country_frame = create_dataframe(countries).drop_duplicates()
 country_frame['actual_type'] = 'Country'
@@ -74,8 +75,8 @@ merged_city = pd.merge(source_df, city_frame, left_on = ['city'], right_on=["pla
 
 final_frame = pd.concat([merged_city, merged_country], ignore_index=True)                                                                            
 
-print(merged_country.columns)
 
+final_frame.to_csv('data/worldcities_output.csv', index=False)
 
 print(final_frame[['dataset', 'similarity','place', 'predicted_type','actual_type', 'URI']])
 

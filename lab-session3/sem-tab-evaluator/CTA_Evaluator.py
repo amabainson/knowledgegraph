@@ -62,12 +62,25 @@ class CTA_Evaluator:
 
 
 if __name__ == "__main__":
+    dir_gt = 'sem-tab-evaluator/gt'
+    dir_output = 'sem-tab-evaluator/system_example'
 
-    gt_file = "gt/CWI64CIY_cta_gt.csv"
-    system_file = "system_example/CWI64CIY_cta_system.csv"
+    #read files and evaluate against the GT 
+    for gt_file in os.listdir(dir_gt):
+        if gt_file.endswith("_cta_gt.csv"):
+            system_file = os.path.join(dir_output, gt_file.replace("_cta_gt.csv", "_cta_output.csv"))
+            print(f"Evaluating: {gt_file} and {os.path.basename(system_file)}")
+            if os.path.exists(system_file):
+                evaluator = CTA_Evaluator()   # Instantiate an evaluator
+                result = evaluator._evaluate(system_file, os.path.join(dir_gt, gt_file))#Evaluate
+                print(result)
+            else:
+                print(f"System file {system_file} not found.")
+    #gt_file = "gt/CWI64CIY_cta_gt.csv"
+    #system_file = "system_example/CWI64CIY_cta_output.csv"
     
     # Instantiate an evaluator
-    evaluator = CTA_Evaluator()
+    #evaluator = CTA_Evaluator()
     # Evaluate
-    result = evaluator._evaluate(system_file, gt_file)
-    print(result)
+    #result = evaluator._evaluate(system_file, gt_file)
+    #print(result)

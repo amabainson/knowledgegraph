@@ -16,7 +16,7 @@ python3 world_data.py
 
 ### Output
 
-The output will contain the following columns:
+The output csv is in the `data` folder and contains the following columns:
 - Source table
 - Isub similarity score
 - Place (city/country)

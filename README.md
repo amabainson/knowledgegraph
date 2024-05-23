@@ -26,10 +26,11 @@ The output csv is in the `data` folder and contains the following columns:
 
 ### Task A.4
 
-To annotate the given tabular data as required in Task A.4, run the following command:
+To annotate the given tabular data as required in Task A.4, run the following commands for CEA and CTA respectively:
 
 ```bash
 python3 CEA_Annotator.py
+python3 CTA_Annotator.py
 ```
 
 The script outputs the results as CSV files in the `sem-tab-evaluator/system_example` directory.
@@ -39,15 +40,17 @@ The script outputs the results as CSV files in the `sem-tab-evaluator/system_exa
 Each output file will contain the following columns:
 - Source table
 - Row id
-- Column id
+- Column id (only for CEA)
 - URI
 
 ## Evaluating the Results
 
-To evaluate the results against the ground truth, run the following command:
+To evaluate the results against the ground truth, run the following commands:
 
 ```bash
 python3 sem-tab-evaluator/CEA_Evaluator.py
+python3 sem-tab-evaluator/CTA_Evaluator.py
+
 ```
 
 ## Directory Structure
@@ -56,16 +59,18 @@ python3 sem-tab-evaluator/CEA_Evaluator.py
 lab-session3/
   ├── world_data.py
   ├── CEA_Annotator.py
+  ├── CTA_Annotator.py
   └── sem-tab-evaluator/
         ├── system_example/
         └── CEA_Evaluator.py
+        └── CTA_Evaluator.py
 ```
 
 ## Summary
 
 - **Task A.1 to A.3**: Implemented in `world_data.py`.
-- **Task A.4**: Annotation done using `CEA_Annotator.py`.
-- **Evaluation**: Performed using `CEA_Evaluator.py`.
+- **Task A.4**: Annotation done using `CEA_Annotator.py` and `CTA_Annotator.py`.
+- **Evaluation**: Performed using `CEA_Evaluator.py` and `CTA_Evaluator.py`.
 
 ---
 

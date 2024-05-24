@@ -39,8 +39,8 @@ The script outputs the results as CSV files in the `sem-tab-evaluator/system_exa
 
 Each output file will contain the following columns:
 - Source table
-- Row id
-- Column id (only for CEA)
+- Row id (only for CEA)
+- Column id 
 - URI
 
 ## Evaluating the Results
